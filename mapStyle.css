@@ -1,0 +1,39 @@
+#canvas {
+}
+
+#canvas-svg {
+   position: fixed;
+   top: 0px;
+   right: 00px;
+  background-color: #fff;
+
+}
+
+
+.land {
+  fill: #222;
+}
+
+.boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+#tooltip-container {
+  position: absolute;
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border: 1px solid;
+  display: none;
+}
+
+.tooltip_key {
+  font-weight: bold;
+}
+
+.tooltip_value {
+  margin-right: 20px;
+  float: right;
+}
