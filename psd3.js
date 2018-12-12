@@ -12,6 +12,8 @@ psd3.Graph = function(config) {
         inner: "inner",
         label: function(d) {
             return d.data.Amount;
+            //SHould I change Value to AMount ot LAbel??????????????????? 
+            return d.data.value;
         },
         tooltip: function(d) {
             if (_this.config.value !== undefined) {
