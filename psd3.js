@@ -11,7 +11,6 @@ psd3.Graph = function(config) {
         value: "Amount", //Instead of 'value'
         inner: "inner",
         label: function(d) {
-            return d.data.Amount;
             console.log('test');
             console.log(d.data.Amount);
             console.log(d.data.value);
