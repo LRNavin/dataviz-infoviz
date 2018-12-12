@@ -17,7 +17,7 @@
 
         collection1 = show.value;
 
-        config = config1;
+        // config = config1;
 
         apiCallForPieData();
 
@@ -30,84 +30,95 @@
 
         year        = show.value;
         
-                config = config1;
+                // config = config1;
 
         apiCallForPieData();
 
 
     }
 
-    var config1 = {
-        containerId: "chartContainer",
-        data: [{
-            value: 25,
-            label: "Maharashtra"
-        }, {
-            value: 50,
-            label: "Gujarat"
-        }],
-    };
-
-    var config = {
-    containerId: "chartContainer",
-    data: [{
-        value: 25,
-        label: "Maharashtra",
-        inner: [
-        {
-            value: 10,
-            label: "Mumbai"
-        },
-        {
-            value: 15,
-            label: "Pune"
-        }, {
-            value: 10,
-            label: "Mumbai"
-        },
-        {
-            value: 15,
-            label: "Pune"
-        }, {
-            value: 10,
-            label: "Mumbai"
-        },
-        {
-            value: 15,
-            label: "Pune"
-        }, {
-            value: 10,
-            label: "Mumbai"
-        }]
-    }, {
-        value: 50,
-        label: "Gujarat",
-        inner: [{
-            value: 20,
-            label: "Surat"
-        }, {
-            value: 30,
-            label: "Rajkot"
-        }]
-    }],
-    };
-
-
     function apiCallForPieData () {
 
       config = config;
-      // constructPieUrl();
-      // console.log('PieURL - ' + url);
 
-      // $.getJSON( url ,
-      //  function( data ) {
-          
-      //       config = data;
+      constructPieUrl();
+      console.log('PieURL - ' + url);
 
-             var samplePie = new psd3.Pie(config);
+      $.getJSON( url ,
+       function( data ) {
+            
+            var newData = {};
+            newData["containerId"] = "chartContainer";
+            newData["data"] = data;
+
+            config = newData;
+
+            console.log('New Data');
+            console.log(config);
+
+            var samplePie = new psd3.Pie(config);
 
       // });
 
+        });
     }
 
+    console.log('Gonna Call API');
     apiCallForPieData();
+
+
+    
+    // var config1 = {
+    //     containerId: "chartContainer",
+    //     data: [{
+    //         value: 25,
+    //         label: "Maharashtra"
+    //     }, {
+    //         value: 50,
+    //         label: "Gujarat"
+    //     }],
+    // };
+
+    // var config = {
+    // containerId: "chartContainer",
+    // data: [{
+    //     value: 25,
+    //     label: "Maharashtra",
+    //     inner: [
+    //     {
+    //         value: 10,
+    //         label: "Mumbai"
+    //     },
+    //     {
+    //         value: 15,
+    //         label: "Pune"
+    //     }, {
+    //         value: 10,
+    //         label: "Mumbai"
+    //     },
+    //     {
+    //         value: 15,
+    //         label: "Pune"
+    //     }, {
+    //         value: 10,
+    //         label: "Mumbai"
+    //     },
+    //     {
+    //         value: 15,
+    //         label: "Pune"
+    //     }, {
+    //         value: 10,
+    //         label: "Mumbai"
+    //     }]
+    // }, {
+    //     value: 50,
+    //     label: "Gujarat",
+    //     inner: [{
+    //         value: 20,
+    //         label: "Surat"
+    //     }, {
+    //         value: 30,
+    //         label: "Rajkot"
+    //     }]
+    // }],
+    // };

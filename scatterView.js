@@ -62,7 +62,8 @@
     function apiCallForData () {
 
         constructUrl();
-        //console.log(url);
+        console.log('Scatter URL');
+        console.log(url);
 
         $.getJSON( url ,
          function( data ) {

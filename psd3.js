@@ -8,15 +8,16 @@ psd3.Graph = function(config) {
     this.defaults = {
         width: 400,
         height: 400,
-        value: "value",
+        value: "Amount", //Instead of 'value'
         inner: "inner",
         label: function(d) {
-            return d.data.value;
+            return d.data.Amount;
         },
         tooltip: function(d) {
             if (_this.config.value !== undefined) {
                 return d[_this.config.value];
             } else {
+                //SHould I change Value ??????????????????? 
                 return d.value;
             }
 
