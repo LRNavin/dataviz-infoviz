@@ -63,7 +63,6 @@
         });
     }
 
-    console.log('Gonna Call API');
     apiCallForPieData();
 
 
