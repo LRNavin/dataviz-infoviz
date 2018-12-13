@@ -1,5 +1,5 @@
     
-    var collection1 = "Population"; // Change to Variable 2 Selected
+    var collection1 = "Fertilizers"; //"Population"; // Change to Variable 2 Selected
     var year = "2004";
     var config = null;
 
