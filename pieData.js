@@ -1,5 +1,5 @@
     
-    var collection1 = "Population";
+    var collection1 = "Population"; // Change to Variable 2 Selected
     var year = "2004";
     var config = null;
 
@@ -10,7 +10,7 @@
         url = "http://127.0.0.1:8080/pieChart?Collection1=" + collection1 + "&Year=" + year;
     }
 
-    function pie_variable_1_change (show) {
+    function pie_variable_2_change (show) {
 
         console.log('Map Variable Change--');
         console.log(show.value);
