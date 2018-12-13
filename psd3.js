@@ -15,11 +15,11 @@ psd3.Graph = function(config) {
             console.log(d.data.Amount);
             console.log(d.data.value);
             //SHould I change Value to AMount ot LAbel??????????????????? 
-            return d.data.value;
+            return d.data.Label.substring(0,3).toUpperCase();
         },
         tooltip: function(d) {
             if (_this.config.value !== undefined) {
-                return d[_this.config.value];
+                return (d['Label'] + ' - ' + d[_this.config.value]);
             } else {
                 //SHould I change Value ??????????????????? 
                 return d.value;
@@ -30,7 +30,7 @@ psd3.Graph = function(config) {
         transitionDuration: 200,
         donutRadius: 0,
         gradient: false,
-        colors: d3.scale.category20(),
+        colors: d3.scale.category20c(),
         labelColor: "black",
         drilldownTransition: "linear",
         drilldownTransitionDuration: 0,
@@ -108,8 +108,8 @@ psd3.Pie.prototype.setHeading = function() {
 
 psd3.Pie.prototype.mouseover = function(d) {
     d3.select("#" + _this.tooltipId)
-        .style("left", (d3.event.clientX + window.scrollX) + "px")
-        .style("top", (d3.event.clientY + window.scrollY) + "px")
+        .style("left", (d3.event.clientX - 100) + "px")
+        .style("top", (d3.event.clientY - 250) + "px")
         .select("#value")
         .html(_this.config.tooltip(d.data, _this.config.label));
     d3.select("#" + _this.tooltipId).classed("psd3Hidden", false);
@@ -274,7 +274,7 @@ psd3.Pie.prototype.draw = function(svg, totalRadius, dataset, originalDataset, o
     //Draw arc paths
     var paths = arcs.append("path")
         //.attr("fill", color(_this.arcIndex));
-        .attr("fill", "url(#gradient_" + _this.arcIndex + ")")
+        .attr("fill", endColor)
         .style("stroke", _this.config.stroke)
         .style("stroke-width", _this.config.strokeWidth);
 

@@ -16,10 +16,10 @@
             top: 20,
             right: 20,
             bottom: 20,
-            left: 20
+            left: 30
         },
-        width = 370 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+        width = 400 - margin.left - margin.right,
+        height = 250 - margin.top - margin.bottom;
 
   
     var varaible_x_array = [];
@@ -153,7 +153,7 @@
             .data(data)
             .enter().append("circle")
             .attr("class", "dot")
-            .attr("r", 3.5)
+            .attr("r", 1.5)
             .attr("cx", function(d) {
                 return x(d.x);
             })

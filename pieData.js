@@ -46,7 +46,12 @@
 
       $.getJSON( url ,
        function( data ) {
-            
+
+            var extraCustomData1 = {"Amount": 180000, "Label": "Canada"};
+            var extraCustomData2 = {"Amount": 686000, "Label": "India"};
+            data.push(extraCustomData1);
+            data.push(extraCustomData2);
+
             var newData = {};
             newData["containerId"] = "chartContainer";
             newData["data"] = data;
