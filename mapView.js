@@ -7,7 +7,7 @@
 
 var collection1 = "Population";
 var year = "2004";
-var jsonVar = null;
+var jsonVar = [];
 
 var url = "http://127.0.0.1:8080/worldMap?Collection1=" + collection1 + "&Year=" + year;
 
@@ -59,8 +59,8 @@ apiCallForMapData();
 
 
 function drawMapView() {
-  jsonVar.push({"Label":"India","Amount":12312});
-  jsonVar.push({"Label":"Canada","Amount":1212});
+  // jsonVar.push({"Label":"India","Amount":12312});
+  // jsonVar.push({"Label":"Canada","Amount":1212});
 
   console.log(jsonVar); 
   //d3.json(jsonVar, function(err, data) {
@@ -171,7 +171,7 @@ function drawMapView() {
       .datum(graticule)
       .attr("class", "graticule")
       .attr("d", path);
-  
+
   var valueHash = {};
   
   function log10(val) {
@@ -181,9 +181,9 @@ function drawMapView() {
   data.forEach(function(d) {
     valueHash[d[MAP_KEY]] = +d[MAP_VALUE];
   });
-  
+
   var quantize = d3.scale.quantize()
-      .domain([0, 1.0])
+      .domain([0, 100])
       .range(d3.range(COLOR_COUNTS).map(function(i) { return i }));
   
   quantize.domain([d3.min(data, function(d){
@@ -225,16 +225,19 @@ function drawMapView() {
             return "#ccc";
           }
         })
+
+        //Navin - Map Units Change Place
+        
         .on("mousemove", function(d) {
             var html = "";
   
             html += "<div class=\"tooltip_kv\">";
             html += "<span class=\"tooltip_key\">";
-            html += d.properties.name;
+            html += d.properties.name + "-";
             html += "</span>";
             html += "<span class=\"tooltip_value\">";
-            html += (valueHash[d.properties.name] ? valueFormat(valueHash[d.properties.name]) : "");
-            html += "";
+            html += (valueHash[d.properties.name] ? valueFormat(valueHash[d.properties.name]) : " ");
+            html += " ";
             html += "</span>";
             html += "</div>";
             
@@ -267,12 +270,45 @@ function drawMapView() {
         .attr("class", "boundary")
         .attr("d", path);
     
-    svg.attr("height", config.height * 2.2 / 3);
+    svg.attr("height", config.height  - 120);
   });
   
   d3.select(self.frameElement).style("height", (height * 2.3 / 3) + "px");
 
 //});
+
+  //Legend in SVG
+  svg.append("g")
+      .attr("class", "legendLinear")
+      .attr("transform", "translate(170,350)");
+
+  var maxValue = 0;
+  var minValue = 0;
+  var valueArray = [];
+
+  console.log('Legend Data');
+
+  data.forEach(function(d) {
+    valueArray.push(d[MAP_VALUE]);
+  });
+
+  maxValue = Math.max(...valueArray);
+  minValue = Math.min(...valueArray);
+    console.log(minValue);
+    console.log(maxValue);
+
+  var colorScale = d3.scale.linear().range([config.color1, config.color0]).interpolate(d3.interpolateLab).domain([maxValue, minValue]);
+
+  var linear = colorScale;
+
+
+  var legendLinear = d3.legend.color()
+    .shapeWidth(15)
+    .orient('vertical')
+    .scale(linear);
+
+  svg.select(".legendLinear")
+    .call(legendLinear);
 
 }
 

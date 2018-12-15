@@ -5,10 +5,12 @@
    position: fixed;
    bottom:   0px;
    right: 180px;
+   background-color: transparent;
+
 }
 
 .line {
-    stroke: #E4002B;
+    stroke: #ff5474;
     fill: none;
     stroke-width: 3;
 }
@@ -31,6 +33,6 @@
 }
 
 .dot {
-    stroke: #293b47;
-    fill: #7A99AC
+    stroke: #0050A1;
+    fill: #99ccff
 }
