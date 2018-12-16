@@ -59,8 +59,8 @@ apiCallForMapData();
 
 
 function drawMapView() {
-  jsonVar.push({"Label":"India","Amount":12312});
-  jsonVar.push({"Label":"Canada","Amount":1212});
+  // jsonVar.push({"Label":"India","Amount":12312});
+  // jsonVar.push({"Label":"Canada","Amount":1212});
 
   console.log(jsonVar); 
   //d3.json(jsonVar, function(err, data) {
