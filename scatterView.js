@@ -6,6 +6,9 @@
     var collection2 = "Fertilizers";
     var year        = "2004";
 
+    var xUnit = "";
+    var yUnit = "";
+
     var url = "http://127.0.0.1:8080/scatterPlot?Collection1=" + collection1 + "&Collection2=" + collection2 +"&Year=" + year;
 
     function constructUrl () {
@@ -13,13 +16,13 @@
     }
 
     var margin = {
-            top: 20,
-            right: 20,
-            bottom: 20,
+            top: 30,
+            right: 30,
+            bottom: 30,
             left: 30
         },
-        width = 400 - margin.left - margin.right,
-        height = 250 - margin.top - margin.bottom;
+        width = 350 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
 
   
     var varaible_x_array = [];
@@ -70,6 +73,9 @@
             
             varaible_x_array = data['x-axis'];
             varaible_y_array = data['y-axis'];
+
+            xUnit = "X-Value : " + data['x-label'];
+            yUnit = "Y-Value : " + data['y-label'];
 
             loadScatterPlot();
 
@@ -127,6 +133,7 @@
             return d.y;
         }));
 
+
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
@@ -136,7 +143,7 @@
             .attr("x", width)
             .attr("y", -6)
             .style("text-anchor", "end")
-            .text("X-Value");
+            .text(xUnit);
 
         svg.append("g")
             .attr("class", "y axis")
@@ -147,7 +154,7 @@
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("Y-Value")
+            .text(yUnit)
 
         svg.selectAll(".dot")
             .data(data)
@@ -165,6 +172,10 @@
             .datum(data)
             .attr("class", "line")
             .attr("d", line);
+
+        // svg.append("text")
+        // .text("unitVal")
+        // .attr("transform", "translate(300,200)");
 
     }
 

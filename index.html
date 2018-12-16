@@ -4,11 +4,14 @@
 <style>
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: coral;
+  background-color: white;
   position: relative;
 }
 
 </style>
+
+<h1 style="position:fixed; color: #b48608; font-family: 'Droid serif', serif; font-size: 30px; font-weight: 400;  line-height: 36px; left:20px; right:750px;">FAOSTAT: Food and Agriculture Organization of the United Nations Agricultural Data</h1>
+
 
 <head>
   <link rel="stylesheet" href="sliderStyle.css">  
@@ -55,7 +58,7 @@ body {
 <!-- Varaible Selection Lsit View & Listener -->
 
 <div class="custom-select-1" style="width:150px;height:20px;">
-  <h5>Variable - 1</h5>
+  <h5>World Map Variable</h5>
   <select id="select-menu-1" name="option1-select" onchange="variable_1_change(document.getElementById('select-menu-1')); map_variable_1_change(document.getElementById('select-menu-1'));">
 
     <option value="Population">Population</option>
@@ -82,7 +85,7 @@ body {
 </div>
 
 <div class="custom-select-2" style="width:150px;height:20px;">
-  <h5>Variable - 2</h5>
+  <h5>Pie Chart Variable</h5>
   <select id="select-menu-2" name="option2-select" onchange="variable_2_change(document.getElementById('select-menu-2')); pie_variable_2_change(document.getElementById('select-menu-1'));">
 
     <option value="Population">Population</option>
@@ -128,3 +131,7 @@ body {
   }
 
 </script>
+
+<p align="center" style="position:fixed; color: #b48608; font-family: 'Droid Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; right:20px; bottom:10px;"> <b>Correlation Scatter Plot</b> <br> Map Variable <br> Vs <br> Pie Chart Variable </p>
+
+<p align="center" style="position:fixed; color: #b48608; font-family: 'Droid Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; left:130px; bottom:10px;"> <b> Pie Chart Variable  </b> <br> Numerical Proportion amoung Countries  </p>

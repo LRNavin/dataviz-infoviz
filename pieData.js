@@ -4,6 +4,22 @@
     var limit = 20;
     var config = null;
 
+
+    var config = {
+        containerId: "chartContainer",
+        data: [{
+            Amount: 25,
+            Label: "Maharashtra",
+            Unit: "tonnes"
+        }, {
+            Amount: 50,
+            Label: "Gujarat",
+            Unit: "tonnes"
+
+        }],
+    };  
+
+
     var url = "http://127.0.0.1:8080/pieChart?Collection1=" + collection1 + "&Year=" + year + "&Limit= " + limit;
 
     function  constructPieUrl()
@@ -40,50 +56,42 @@
 
     function apiCallForPieData () {
 
-      config = config;
+      // config = config1;
 
       constructPieUrl();
       console.log('PieURL - ' + url);
 
-      $.getJSON( url ,
-       function( data ) {
+      // $.getJSON( url ,
+      //  function( data ) {
 
 
-            //var extraCustomData1 = {"Amount": 180000, "Label": "Canada"};
-            //var extraCustomData2 = {"Amount": 686000, "Label": "India"};
-            //data.push(extraCustomData1);
-            //data.push(extraCustomData2);
+      //       //var extraCustomData1 = {"Amount": 180000, "Label": "Canada"};
+      //       //var extraCustomData2 = {"Amount": 686000, "Label": "India"};
+      //       //data.push(extraCustomData1);
+      //       //data.push(extraCustomData2);
 
-            var newData = {};
-            newData["containerId"] = "chartContainer";
-            newData["data"] = data;
+      //       var newData = {};
+      //       newData["containerId"] = "chartContainer";
+      //       newData["data"] = data;
 
-            config = newData;
+      //       config = newData;
 
-            console.log('New Data');
-            console.log(config);
+      //       console.log('New Data');
+      //       console.log(config);
 
             var samplePie = new psd3.Pie(config);
 
-      // });
+      // // });
 
-        });
+      //   });
     }
+
 
     apiCallForPieData();
 
 
     
-    // var config1 = {
-    //     containerId: "chartContainer",
-    //     data: [{
-    //         value: 25,
-    //         label: "Maharashtra"
-    //     }, {
-    //         value: 50,
-    //         label: "Gujarat"
-    //     }],
-    // };
+    
 
     // var config = {
     // containerId: "chartContainer",

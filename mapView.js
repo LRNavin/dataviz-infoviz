@@ -59,8 +59,8 @@ apiCallForMapData();
 
 
 function drawMapView() {
-  // jsonVar.push({"Label":"India","Amount":12312});
-  // jsonVar.push({"Label":"Canada","Amount":1212});
+  jsonVar.push({"Label":"India","Amount":9231222});
+  jsonVar.push({"Label":"Canada","Amount":121212});
 
   console.log(jsonVar); 
   //d3.json(jsonVar, function(err, data) {
@@ -70,7 +70,7 @@ function drawMapView() {
 
   var config = {"data0":"Label","data1":"Amount",
               "label0":"label 0","label1":"label 1","color0":"#99ccff","color1":"#0050A1",
-              "width":900,"height":650}
+              "width":900,"height":775}
   
   var width = config.width,
       height = config.height;
@@ -150,7 +150,7 @@ function drawMapView() {
   var MAP_VALUE = config.data1;
   
   var projection = d3.geo.mercator()
-      .scale((width + 1) / 2 / Math.PI)
+      .scale(((width + 1) / 2 / Math.PI) + 5)
       .translate([width / 2, height / 2])
       .precision(.1);
   
@@ -173,6 +173,9 @@ function drawMapView() {
       .attr("d", path);
 
   var valueHash = {};
+  
+  var unitVal = jsonVar[0]['Unit'];
+  unitVal = unitVal.charAt(0).toUpperCase() + unitVal.substring(1);
   
   function log10(val) {
     return Math.log(val);
@@ -233,10 +236,10 @@ function drawMapView() {
   
             html += "<div class=\"tooltip_kv\">";
             html += "<span class=\"tooltip_key\">";
-            html += d.properties.name + "-";
+            html += d.properties.name + "- ";
             html += "</span>";
             html += "<span class=\"tooltip_value\">";
-            html += (valueHash[d.properties.name] ? valueFormat(valueHash[d.properties.name]) : " ");
+            html += valueHash[d.properties.name] + ' (' + unitVal + ') ';//(valueHash[d.properties.name] ? valueFormat(valueHash[d.properties.name]) : " ");
             html += " ";
             html += "</span>";
             html += "</div>";
@@ -280,7 +283,12 @@ function drawMapView() {
   //Legend in SVG
   svg.append("g")
       .attr("class", "legendLinear")
-      .attr("transform", "translate(170,350)");
+      .attr("transform", "translate(140,420)");
+
+
+  svg.append("text")
+    .text(unitVal)
+    .attr("transform", "translate(140,410)");
 
   var maxValue = 0;
   var minValue = 0;

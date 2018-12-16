@@ -4,8 +4,9 @@
 #canvas2-svg {
    position: fixed;
    bottom:   0px;
-   right: 180px;
-   background-color: transparent;
+   right: 0px;
+   left: 750px;
+   background-color: white;
 
 }
 

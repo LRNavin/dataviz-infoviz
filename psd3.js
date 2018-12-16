@@ -19,7 +19,10 @@ psd3.Graph = function(config) {
         },
         tooltip: function(d) {
             if (_this.config.value !== undefined) {
-                return (d['Label'] + ' - ' + d[_this.config.value]);
+
+                var unitVal = d['Unit'].charAt(0).toUpperCase() + d['Unit'].substring(1);
+
+                return (d['Label'] + ' - ' + d[_this.config.value] + ' ' + unitVal);
             } else {
                 //SHould I change Value ??????????????????? 
                 return d.value;
@@ -160,6 +163,11 @@ psd3.Pie.prototype.drawPie = function(dataset) {
     var originalOuterRadius = outerRadius;
     var radiusDelta = outerRadius - innerRadius;
     _this.draw(svg, radius, dataset, dataset, dataset.length, innerRadius, outerRadius, radiusDelta, 0, 360 * 22 / 7 / 180, [0, 0]);
+
+
+
+  
+
 };
 
 
@@ -325,6 +333,9 @@ psd3.Pie.prototype.draw = function(svg, totalRadius, dataset, originalDataset, o
             _this.draw(svg, totalRadius, dataset[j][_this.config.inner], originalDataset, originalDatasetLength, innerRadius + radiusDelta, outerRadius + radiusDelta, radiusDelta, paths.data()[j].startAngle, paths.data()[j].endAngle, arc.centroid(paths.data()[j]));
         }
     }
+
+
+
 
 
 };
