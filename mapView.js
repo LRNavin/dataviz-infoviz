@@ -75,7 +75,7 @@ function drawMapView() {
   var width = config.width,
       height = config.height;
   
-  var COLOR_COUNTS = 9;
+  var COLOR_COUNTS = 20;
   
   function Interpolate(start, end, steps, count) {
       var s = start,
