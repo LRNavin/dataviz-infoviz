@@ -33,12 +33,12 @@ psd3.Graph = function(config) {
         transitionDuration: 200,
         donutRadius: 0,
         gradient: false,
-        colors: d3.scale.category20c(),
+        colors: d3.scale.linear().domain([1,length]).interpolate(d3.interpolateHcl).range([d3.rgb("#99ccff"), d3.rgb('#0050A1')]), 
         labelColor: "black",
         drilldownTransition: "linear",
         drilldownTransitionDuration: 0,
         stroke: "white",
-        strokeWidth: 2,
+        strokeWidth: 1,
         highlightColor: "orange"
     };
     /*console.log("before defaults");

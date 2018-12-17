@@ -1,28 +1,25 @@
-    //TODO - Dynamic Variables on X & Y - Done
-    //Labelling with Variables Names, Country Names
-    //ANIMATION - During Change in Varaibles
 
-    var collection1 = "Population";
-    var collection2 = "Fertilizers";
+    var collection1_S = "Population";
+    var collection2_S = "Fertilizers";
     var year        = "2004";
 
     var xUnit = "";
     var yUnit = "";
 
-    var url = "http://127.0.0.1:8080/scatterPlot?Collection1=" + collection1 + "&Collection2=" + collection2 +"&Year=" + year;
+    var url = "http://127.0.0.1:8080/scatterPlot?Collection1=" + collection1_S + "&Collection2=" + collection2_S +"&Year=" + year;
 
     function constructUrl () {
-        url = "http://127.0.0.1:8080/scatterPlot?Collection1=" + collection1 + "&Collection2=" + collection2 +"&Year=" + year;
+        url = "http://127.0.0.1:8080/scatterPlot?Collection1=" + collection1_S + "&Collection2=" + collection2_S +"&Year=" + year;
     }
 
     var margin = {
-            top: 30,
+            top: 40,
             right: 30,
             bottom: 30,
             left: 30
         },
         width = 350 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+        height = 320 - margin.top - margin.bottom;
 
   
     var varaible_x_array = [];
@@ -31,9 +28,7 @@
 
     function variable_1_change (show) {
 
-        //console.log(show.value);
-
-        collection1 = show.value;
+        collection1_S = show.value;
 
         apiCallForData();
 
@@ -41,18 +36,14 @@
 
     function variable_2_change (show) {
 
-        //console.log(show.value);
         
-        collection2 = show.value;
+        collection2_S = show.value;
 
         apiCallForData();
 
     }
 
     function yearChange (show) {
-
-        console.log('Getting here');
-        console.log(show.value);
 
         year        = show.value;
         apiCallForData();
@@ -75,8 +66,8 @@
             varaible_y_array = data['y-axis'];
             country_array = data['Countries'];
 
-            xUnit = "X-Value : " + data['x-label'];
-            yUnit = "Y-Value : " + data['y-label'];
+            xUnit = collection1_S + " : " + data['x-label'];
+            yUnit = collection2_S + " : " + data['y-label'];
 
             loadScatterPlot();
 
@@ -109,7 +100,7 @@
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
-            .attr("transform", "translate(" + margin.right + "," + margin.bottom + ")");
+            .attr("transform", "translate(" + (margin.right + 25) + "," + (margin.bottom - 20) + ")");
 
 
 
@@ -119,8 +110,9 @@
             d.x = +d.x;
             d.y = +d.y;
             d.yhat = +d.yhat;
-            d.Country = +d.Country;
+            d.Country = d.Country;
         });
+
 
 
         var tip = d3.select('#canvas2-svg')
@@ -164,16 +156,28 @@
         }));
 
 
+
+    
+
         svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate(0," + (height) + ")")
             .call(xAxis)
-            .append("text")
-            .attr("class", "label")
+            .selectAll("text")
+            .attr("y", 0)
+            .attr("x", 9)
+            .attr("dy", ".55em")
+            .attr("transform", "rotate(90)")
+            .style("text-anchor", "start");
+
+
+        svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "end")
             .attr("x", width)
-            .attr("y", -6)
-            .style("text-anchor", "end")
+            .attr("y", height - 6)
             .text(xUnit);
+
 
         svg.append("g")
             .attr("class", "y axis")
@@ -204,7 +208,7 @@
                 tip.style('top', y(d.y) - 20 + 'px');
                 tip.style('left', x(d.x) + 'px');
                 tip.style('display', 'block');
-                tip.html( "d.Country" + ' - ' + d.x + ' (' + xUnit + ') ' + ',' + d.y + ' (' + yUnit + ') '  );
+                tip.html( d.Country ); // + ' - ' + d.x + ' (' + xUnit + ') ' + ',' + d.y + ' (' + yUnit + ') '  );
               })
             .on('mouseout', function(d, i) {
                 tip.transition()
@@ -282,8 +286,6 @@
                 "Country": country_array[i] 
             })
         }
-
-        //console.log(data);
 
         return (data);
     }

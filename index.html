@@ -112,7 +112,7 @@ body {
 </div>
 
 <div class="slidecontainer" style="z-index: 1000">
-    <h5 id="year">Year Range</h5>
+    <h5 id="year">Year Selection</h5>
     <input type="range" min="1920" max="2016" value="2004" class="slider" id="myRange" onmouseup="yearChange(document.getElementById('myRange')); yearMapChange(document.getElementById('myRange')); yearPieChange(document.getElementById('myRange'));">
 </div>
 
@@ -120,18 +120,18 @@ body {
 
   var slider = document.getElementById("myRange");
   var output = document.getElementById("year");
-  output.innerHTML = 'Year Range - ' + slider.value; // Display the default slider value
+  output.innerHTML = 'Year Selection - ' + slider.value; // Display the default slider value
 
   // Update the current slider value (each time you drag the slider handle)
   slider.oninput = function() {
     console.log('Hereee');
     console.log(slider.value);
-    output.innerHTML = 'Year Range - ' + slider.value;
+    output.innerHTML = 'Year Selection - ' + slider.value;
     console.log('Updated');
   }
 
 </script>
 
-<p align="center" style="position:fixed; color: #b48608; font-family: 'Droid Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; right:20px; bottom:10px;"> <b>Correlation Scatter Plot</b> <br> Map Variable <br> Vs <br> Pie Chart Variable </p>
+<p align="center" style="position:fixed; color: #b48608; font-family: 'Droid Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; right:10px; bottom:40px;"> <b>Correlation Scatter Plot</b> <br> Map Variable <br> Vs <br> Pie Chart Variable </p>
 
-<p align="center" style="position:fixed; color: #b48608; font-family: 'Droid Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; left:130px; bottom:10px;"> <b> Pie Chart Variable  </b> <br> Numerical Proportion amoung Countries  </p>
+<p align="center" style="position:fixed; color: #b48608; font-family: 'Droid Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; left:130px; bottom:10px;"> <b> Pie Chart Variable  </b> <br> Numerical Proportion amoung Countries (Top 10) </p>
