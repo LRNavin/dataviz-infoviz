@@ -27,7 +27,7 @@
   
     var varaible_x_array = [];
     var varaible_y_array = [];
-
+    var country_array = [];
 
     function variable_1_change (show) {
 
@@ -73,6 +73,7 @@
             
             varaible_x_array = data['x-axis'];
             varaible_y_array = data['y-axis'];
+            country_array = data['Countries'];
 
             xUnit = "X-Value : " + data['x-label'];
             yUnit = "Y-Value : " + data['y-label'];
@@ -110,13 +111,42 @@
             .append("g")
             .attr("transform", "translate(" + margin.right + "," + margin.bottom + ")");
 
+
+
         var data = create_data(200);
 
         data.forEach(function(d) {
             d.x = +d.x;
             d.y = +d.y;
             d.yhat = +d.yhat;
+            d.Country = +d.Country;
         });
+
+
+        var tip = d3.select('#canvas2-svg')
+          .append('div')
+          .attr('class', 'tip')
+          .html('TEST')
+          .style('max-width', '150px')
+          .style('background-color', 'white')
+          .style('-webkit-border-radius', '10px')
+          .style('-moz-border-radius', '10px')
+          .style('border-radius', '10px')
+          .style('-webkit-box-shadow', '4px 4px 10px rgba(0, 0, 0, 0.4)')
+          .style('-moz-box-shadow', '4px 4px 10px rgba(0, 0, 0, 0.4)')
+          .style('box-shadow', '4px 4px 10px rgba(0, 0, 0, 0.4)')
+          .style('padding', '10px')
+          .style('position', 'absolute')
+          .style('display', 'none')
+          .style('text-align', 'left')
+          .on('mouseover', function(d, i) {
+            tip.transition().duration(0);
+          })
+          .on('mouseout', function(d, i) {
+            tip.style('display', 'none');
+          });
+
+
 
         var line = d3.svg.line()
             .x(function(d) {
@@ -166,7 +196,23 @@
             })
             .attr("cy", function(d) {
                 return y(d.y);
-            });
+            })
+
+
+            .on('mouseover', function(d, i) {
+                tip.transition().duration(0);
+                tip.style('top', y(d.y) - 20 + 'px');
+                tip.style('left', x(d.x) + 'px');
+                tip.style('display', 'block');
+                tip.html( "d.Country" + ' - ' + d.x + ' (' + xUnit + ') ' + ',' + d.y + ' (' + yUnit + ') '  );
+              })
+            .on('mouseout', function(d, i) {
+                tip.transition()
+                .delay(500)
+                .style('display', 'none');
+            })
+
+            ;
 
         svg.append("path")
             .datum(data)
@@ -232,7 +278,8 @@
             data.push({
                 "yhat": yhat[i],
                 "y": y[i],
-                "x": x[i]
+                "x": x[i],
+                "Country": country_array[i] 
             })
         }
 
