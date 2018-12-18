@@ -14,12 +14,9 @@
 
     function pie_variable_2_change (show) {
 
-        console.log('Map Variable Change--');
-        console.log(show.value);
 
         collection1 = show.value;
 
-        // config = config1;
 
         apiCallForPieData();
 
@@ -32,7 +29,6 @@
 
         year        = show.value;
         
-                // config = config1;
 
         apiCallForPieData();
 
@@ -40,8 +36,6 @@
     }
 
     function apiCallForPieData () {
-
-      // config = config1;
 
       constructPieUrl();
       console.log('PieURL - ' + url);
@@ -54,9 +48,6 @@
             newData["data"] = data;
 
             config = newData;
-
-            console.log('New Data');
-            console.log(config);
 
             var samplePie = new psd3.Pie(config);
 
